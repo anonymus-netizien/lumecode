@@ -74,7 +74,7 @@ class TestPropertyBasedInvariants:
         mock_provider.name = "mock"
         mock_provider.generate.return_value = "Response"
         
-        with patch('lumecode.cli.commands.ask.get_provider', return_value=mock_provider):
+        with patch('lumecode.cli.core.llm.get_provider_with_fallback', return_value=mock_provider):
             result = runner.invoke(cli, ['ask', question, '--provider', 'mock'])
             # Should not crash (exit code may vary but shouldn't raise exception)
             assert isinstance(result.exit_code, int)
@@ -89,7 +89,7 @@ class TestPropertyBasedInvariants:
         mock_provider.generate.return_value = "Response"
         mock_provider.stream.return_value = iter(["Test"])
         
-        with patch('lumecode.cli.commands.ask.get_provider', return_value=mock_provider):
+        with patch('lumecode.cli.core.llm.get_provider_with_fallback', return_value=mock_provider):
             args = ['ask', 'test', '--provider', provider]
             if streaming:
                 args.append('--stream')
@@ -105,7 +105,7 @@ class TestPropertyBasedInvariants:
         mock_provider = MagicMock()
         mock_provider.name = "mock"
         
-        with patch('lumecode.cli.commands.review.get_provider', return_value=mock_provider):
+        with patch('lumecode.cli.core.llm.get_provider_with_fallback', return_value=mock_provider):
             result = runner.invoke(cli, [
                 'review', 'code',
                 '--severity', severity,
@@ -161,7 +161,7 @@ class TestEdgeCases:
         mock_provider = MagicMock()
         mock_provider.name = "mock"
         
-        with patch('lumecode.cli.commands.ask.get_provider', return_value=mock_provider):
+        with patch('lumecode.cli.core.llm.get_provider_with_fallback', return_value=mock_provider):
             result = runner.invoke(cli, ['ask', question, '--provider', 'mock'])
             # Should handle gracefully (may fail validation but shouldn't crash)
             assert isinstance(result.exit_code, int)
@@ -179,7 +179,7 @@ class TestEdgeCases:
         mock_provider = MagicMock()
         mock_provider.name = "mock"
         
-        with patch('lumecode.cli.commands.explain.get_provider', return_value=mock_provider):
+        with patch('lumecode.cli.core.llm.get_provider_with_fallback', return_value=mock_provider):
             result = runner.invoke(cli, [
                 'explain', 'code',
                 '--file', path,
@@ -324,7 +324,7 @@ class TestCombinations:
         mock_provider = MagicMock()
         mock_provider.name = "mock"
         
-        with patch('lumecode.cli.commands.ask.get_provider', return_value=mock_provider):
+        with patch('lumecode.cli.core.llm.get_provider_with_fallback', return_value=mock_provider):
             args = ['ask', 'test', '--provider', 'mock']
             
             if streaming:
@@ -349,7 +349,7 @@ class TestCombinations:
         mock_provider = MagicMock()
         mock_provider.name = "mock"
         
-        with patch('lumecode.cli.commands.commit.get_provider', return_value=mock_provider):
+        with patch('lumecode.cli.core.llm.get_provider_with_fallback', return_value=mock_provider):
             args = ['commit', 'generate', '--provider', 'mock']
             
             if staged:

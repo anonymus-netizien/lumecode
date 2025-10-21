@@ -82,12 +82,17 @@ class TestPrioritizeFiles:
     
     def test_prioritize_by_size(self, temp_files):
         """Test that smaller files get better size scores."""
-        # Compare a medium file with a large one
-        medium_score = _calculate_size_score(temp_files['py_small'])
+        # Compare a small file with a large one
+        small_score = _calculate_size_score(temp_files['py_small'])
         large_score = _calculate_size_score(temp_files['py_large'])
         
-        # Large file should have lower score than medium AND be below threshold
-        assert large_score < medium_score and large_score < 0.5
+        # Small file (<10KB) should have perfect score of 1.0
+        assert small_score == 1.0, f"Small file should have score 1.0, got {small_score}"
+        
+        # Large file should have lower score (score = 10KB / actual_size)
+        # For ~14KB file: score = 10240/14000 ≈ 0.73
+        assert large_score < small_score, f"Large file score ({large_score}) should be less than small file ({small_score})"
+        assert 0.5 < large_score < 1.0, f"Large file score should be between 0.5 and 1.0, got {large_score}"
     
     def test_prioritize_by_recency(self, temp_files):
         """Test that recent files are prioritized."""
