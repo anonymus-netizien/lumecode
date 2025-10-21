@@ -2,4 +2,4 @@
 
 from .streaming import StreamingDisplay
 
-__all__ = ['StreamingDisplay']
+__all__ = ["StreamingDisplay"]

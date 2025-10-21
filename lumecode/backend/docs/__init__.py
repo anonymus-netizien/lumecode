@@ -6,17 +6,23 @@ formatted documentation in various formats.
 """
 
 from .generator import (
-    DocFormat, DocSection, DocItem, DocTemplate,
-    DocParser, DocGenerator, DocServer, DocManager
+    DocFormat,
+    DocSection,
+    DocItem,
+    DocTemplate,
+    DocParser,
+    DocGenerator,
+    DocServer,
+    DocManager,
 )
 
 __all__ = [
-    'DocFormat',
-    'DocSection',
-    'DocItem',
-    'DocTemplate',
-    'DocParser',
-    'DocGenerator',
-    'DocServer',
-    'DocManager',
+    "DocFormat",
+    "DocSection",
+    "DocItem",
+    "DocTemplate",
+    "DocParser",
+    "DocGenerator",
+    "DocServer",
+    "DocManager",
 ]

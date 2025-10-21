@@ -14,8 +14,7 @@ except ImportError:
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger("lumecode")
 
@@ -44,11 +43,11 @@ def _check_api_keys():
     """Check for API keys and display setup guidance if missing."""
     groq_key = os.getenv("GROQ_API_KEY")
     openrouter_key = os.getenv("OPENROUTER_API_KEY")
-    
+
     # If at least one key is configured, we're good
     if groq_key or openrouter_key:
         return
-    
+
     # No API keys configured - show friendly setup message
     click.echo()
     click.secho("⚠️  No API keys configured!", fg="yellow", bold=True)
@@ -80,33 +79,26 @@ def _check_api_keys():
 
 @click.group()
 @click.version_option(version=__version__)
-@click.option(
-    "--debug", "-d",
-    is_flag=True,
-    help="Enable debug logging"
-)
-@click.option(
-    "--config", "-c",
-    type=click.Path(exists=True),
-    help="Path to config file"
-)
+@click.option("--debug", "-d", is_flag=True, help="Enable debug logging")
+@click.option("--config", "-c", type=click.Path(exists=True), help="Path to config file")
 def cli(debug, config):
     """Lumecode - AI-powered developer CLI assistant.
-    
+
     FREE, open-source tool for intelligent code assistance, documentation,
     testing, review, and more - powered by AI models from Groq and OpenRouter.
     """
     if debug:
         logging.getLogger().setLevel(logging.DEBUG)
         logger.debug("Debug logging enabled")
-    
+
     if config:
         # Load custom config file
         from backend.config import ConfigManager
+
         config_manager = ConfigManager()
         config_manager.load_config(config)
         logger.debug(f"Loaded config from {config}")
-    
+
     # Check for API keys and show setup guidance
     _check_api_keys()
 
@@ -124,8 +116,8 @@ cli.add_command(config_group)
 cli.add_command(batch_group)
 
 # NEW: Interactive & AI-powered features
-cli.add_command(chat)    # Interactive REPL mode
-cli.add_command(file)    # AI-powered file operations
+cli.add_command(chat)  # Interactive REPL mode
+cli.add_command(file)  # AI-powered file operations
 cli.add_command(provider_group)  # Provider management
 
 # Add more command groups here as they are implemented
@@ -142,6 +134,7 @@ def main():
         logger.error(f"Error: {e}")
         if logging.getLogger().level == logging.DEBUG:
             import traceback
+
             traceback.print_exc()
         sys.exit(1)
 

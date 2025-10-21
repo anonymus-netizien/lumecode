@@ -28,6 +28,7 @@ sys.path.insert(0, str(project_root))
 # BASIC FIXTURES
 # ============================================================================
 
+
 @pytest.fixture
 def runner():
     """Create Click CLI test runner with isolated filesystem."""
@@ -52,22 +53,23 @@ def isolated_cli(runner):
 # GIT FIXTURES
 # ============================================================================
 
+
 @pytest.fixture
 def git_repo(temp_dir):
     """Create a git repository for testing."""
     repo_path = temp_dir / "test_repo"
     repo_path.mkdir()
-    
+
     # Initialize git repo
-    subprocess.run(['git', 'init'], cwd=repo_path, capture_output=True)
-    subprocess.run(['git', 'config', 'user.email', 'test@example.com'], cwd=repo_path)
-    subprocess.run(['git', 'config', 'user.name', 'Test User'], cwd=repo_path)
-    
+    subprocess.run(["git", "init"], cwd=repo_path, capture_output=True)
+    subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=repo_path)
+    subprocess.run(["git", "config", "user.name", "Test User"], cwd=repo_path)
+
     # Create initial commit
     (repo_path / "README.md").write_text("# Test Project")
-    subprocess.run(['git', 'add', '.'], cwd=repo_path)
-    subprocess.run(['git', 'commit', '-m', 'Initial commit'], cwd=repo_path)
-    
+    subprocess.run(["git", "add", "."], cwd=repo_path)
+    subprocess.run(["git", "commit", "-m", "Initial commit"], cwd=repo_path)
+
     return repo_path
 
 
@@ -76,13 +78,13 @@ def git_repo_with_changes(git_repo):
     """Git repo with uncommitted changes."""
     # Add new file
     (git_repo / "new_file.py").write_text("def new_function(): pass")
-    
+
     # Modify existing file
     (git_repo / "README.md").write_text("# Updated Project\n\nNew content")
-    
+
     # Stage one file
-    subprocess.run(['git', 'add', 'new_file.py'], cwd=git_repo)
-    
+    subprocess.run(["git", "add", "new_file.py"], cwd=git_repo)
+
     return git_repo
 
 
@@ -90,14 +92,14 @@ def git_repo_with_changes(git_repo):
 def git_repo_with_branches(git_repo):
     """Git repo with multiple branches."""
     # Create feature branch
-    subprocess.run(['git', 'checkout', '-b', 'feature/test'], cwd=git_repo)
+    subprocess.run(["git", "checkout", "-b", "feature/test"], cwd=git_repo)
     (git_repo / "feature.py").write_text("def feature(): pass")
-    subprocess.run(['git', 'add', '.'], cwd=git_repo)
-    subprocess.run(['git', 'commit', '-m', 'Add feature'], cwd=git_repo)
-    
+    subprocess.run(["git", "add", "."], cwd=git_repo)
+    subprocess.run(["git", "commit", "-m", "Add feature"], cwd=git_repo)
+
     # Back to main
-    subprocess.run(['git', 'checkout', 'main'], cwd=git_repo)
-    
+    subprocess.run(["git", "checkout", "main"], cwd=git_repo)
+
     return git_repo
 
 
@@ -105,11 +107,13 @@ def git_repo_with_branches(git_repo):
 # FILE FIXTURES
 # ============================================================================
 
+
 @pytest.fixture
 def sample_python_file(temp_dir):
     """Create sample Python file for testing."""
     file = temp_dir / "sample.py"
-    file.write_text('''
+    file.write_text(
+        '''
 def add(a, b):
     """Add two numbers."""
     return a + b
@@ -130,7 +134,8 @@ class Calculator:
         if b == 0:
             raise ValueError("Cannot divide by zero")
         return a / b
-''')
+'''
+    )
     return file
 
 
@@ -138,7 +143,8 @@ class Calculator:
 def complex_python_file(temp_dir):
     """Create complex Python file with various constructs."""
     file = temp_dir / "complex.py"
-    file.write_text('''
+    file.write_text(
+        '''
 import os
 import sys
 from typing import List, Dict, Optional
@@ -193,7 +199,8 @@ def process_data(data: Dict[str, Any]) -> Dict[str, Any]:
         return result
     except Exception as e:
         return {"status": "error", "message": str(e)}
-''')
+'''
+    )
     return file
 
 
@@ -201,7 +208,8 @@ def process_data(data: Dict[str, Any]) -> Dict[str, Any]:
 def buggy_python_file(temp_dir):
     """Create Python file with common bugs."""
     file = temp_dir / "buggy.py"
-    file.write_text('''
+    file.write_text(
+        '''
 def divide(a, b):
     """Divide without zero check."""
     return a / b  # Bug: no zero check
@@ -219,7 +227,8 @@ def infinite_loop():
     """Potential infinite loop."""
     while True:  # Bug: no break condition
         pass
-''')
+'''
+    )
     return file
 
 
@@ -228,14 +237,15 @@ def sample_project(temp_dir):
     """Create realistic project structure."""
     project = temp_dir / "project"
     project.mkdir()
-    
+
     # Create src directory
     src = project / "src"
     src.mkdir()
-    
+
     # Create main module
     (src / "__init__.py").write_text("")
-    (src / "main.py").write_text("""
+    (src / "main.py").write_text(
+        """
 import sys
 from .utils import helper
 
@@ -247,9 +257,11 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-""")
-    
-    (src / "utils.py").write_text("""
+"""
+    )
+
+    (src / "utils.py").write_text(
+        """
 from typing import List, Dict
 
 def helper() -> str:
@@ -266,32 +278,36 @@ def parse_config(config: Dict) -> Dict:
         "debug": config.get("debug", False),
         "port": config.get("port", 8000)
     }
-""")
-    
+"""
+    )
+
     # Create tests directory
     tests = project / "tests"
     tests.mkdir()
     (tests / "__init__.py").write_text("")
-    (tests / "test_main.py").write_text("""
+    (tests / "test_main.py").write_text(
+        """
 import pytest
 from src.main import main
 
 def test_main():
     \"\"\"Test main function.\"\"\"
     assert main() == 0
-""")
-    
+"""
+    )
+
     # Create config files
     (project / "requirements.txt").write_text("pytest>=7.0.0\nclick>=8.0.0\n")
     (project / "setup.py").write_text("from setuptools import setup\nsetup(name='test-project')")
     (project / "README.md").write_text("# Test Project\n\nA sample project for testing.")
-    
+
     return project
 
 
 # ============================================================================
 # MOCK LLM FIXTURES
 # ============================================================================
+
 
 @pytest.fixture
 def mock_llm_response():
@@ -300,7 +316,7 @@ def mock_llm_response():
         "content": "This is a mock AI response.",
         "usage": {"prompt_tokens": 10, "completion_tokens": 5, "total_tokens": 15},
         "model": "mock-model",
-        "provider": "mock"
+        "provider": "mock",
     }
 
 
@@ -333,6 +349,7 @@ def mock_openrouter_provider(mock_provider):
 # ENVIRONMENT FIXTURES
 # ============================================================================
 
+
 @pytest.fixture
 def clean_env(monkeypatch):
     """Clean environment without API keys."""
@@ -363,6 +380,7 @@ def temp_cache_dir(temp_dir, monkeypatch):
 # CONFIG FIXTURES
 # ============================================================================
 
+
 @pytest.fixture
 def sample_config(temp_dir):
     """Sample configuration file."""
@@ -372,7 +390,7 @@ def sample_config(temp_dir):
         "model": "llama-3.1-70b-versatile",
         "cache_enabled": True,
         "streaming": True,
-        "verbose": False
+        "verbose": False,
     }
     config_path.write_text(json.dumps(config, indent=2))
     return config_path
@@ -389,6 +407,7 @@ def config_with_invalid_data(temp_dir):
 # ============================================================================
 # PARAMETRIZATION DATA
 # ============================================================================
+
 
 @pytest.fixture
 def provider_list():
@@ -411,6 +430,7 @@ def file_extensions():
 # ============================================================================
 # SUBPROCESS MOCKS
 # ============================================================================
+
 
 @pytest.fixture
 def mock_subprocess_success():
@@ -436,6 +456,7 @@ def mock_subprocess_failure():
 # AUTO-USE FIXTURES
 # ============================================================================
 
+
 @pytest.fixture(autouse=True)
 def reset_singletons():
     """Reset any singleton instances between tests."""
@@ -447,6 +468,7 @@ def reset_singletons():
 def capture_warnings():
     """Capture warnings during tests."""
     import warnings
+
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
         yield w

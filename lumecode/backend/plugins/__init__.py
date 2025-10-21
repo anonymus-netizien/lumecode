@@ -8,7 +8,7 @@ from .interface import (
     TransformerPlugin,
     GeneratorPlugin,
     IntegrationPlugin,
-    VisualizationPlugin
+    VisualizationPlugin,
 )
 
 __all__ = [
@@ -23,5 +23,5 @@ __all__ = [
     "TransformerPlugin",
     "GeneratorPlugin",
     "IntegrationPlugin",
-    "VisualizationPlugin"
+    "VisualizationPlugin",
 ]

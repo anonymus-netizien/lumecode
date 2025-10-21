@@ -9,5 +9,5 @@ with the main CLI application.
 from .docs import docs_group
 
 __all__ = [
-    'docs_group',
+    "docs_group",
 ]
