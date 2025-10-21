@@ -39,6 +39,7 @@ class GroqProvider(BaseLLMProvider):
             api_key: Groq API key (or set GROQ_API_KEY env var)
         """
         super().__init__(model, api_key)
+        self.provider_name = "groq"
         self.api_key = api_key or os.getenv("GROQ_API_KEY")
         
         if not self.api_key:

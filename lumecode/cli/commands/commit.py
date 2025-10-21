@@ -112,6 +112,11 @@ def generate(staged: bool, auto_commit: bool, provider: str, conventional: bool,
         # Get LLM provider (with automatic fallback)
         llm = get_provider_with_fallback(provider, verbose=verbose)
         
+        # Detect if fallback occurred and notify user
+        actual_provider = getattr(llm, "provider_name", provider)
+        if verbose and actual_provider and actual_provider != provider:
+            console.print(f"[dim yellow]⚠️  Fallback: Using {actual_provider} instead of {provider}[/dim yellow]")
+        
         # Generate commit message
         console.print(Panel(
             "[yellow]Generating commit message...[/yellow]",
@@ -137,7 +142,7 @@ def generate(staged: bool, auto_commit: bool, provider: str, conventional: bool,
         ))
         
         if verbose:
-            console.print(f"\nProvider: {provider}")
+            console.print(f"\nProvider: {actual_provider}")
             console.print(f"Model: {llm.model}")
         
         # Interactive mode - ask user
@@ -306,6 +311,11 @@ def improve(message: str, provider: str, conventional: bool, verbose: bool):
         # Get LLM provider (with automatic fallback)
         llm = get_provider_with_fallback(provider, verbose=verbose)
         
+        # Detect if fallback occurred and notify user
+        actual_provider = getattr(llm, "provider_name", provider)
+        if verbose and actual_provider and actual_provider != provider:
+            console.print(f"[dim yellow]⚠️  Fallback: Using {actual_provider} instead of {provider}[/dim yellow]")
+        
         # Generate improved message
         console.print(Panel(
             "[yellow]Improving commit message...[/yellow]",
@@ -330,7 +340,7 @@ def improve(message: str, provider: str, conventional: bool, verbose: bool):
         ))
         
         if verbose:
-            console.print(f"\nProvider: {provider}")
+            console.print(f"\nProvider: {actual_provider}")
             console.print(f"Model: {llm.model}")
     
     except Exception as e:

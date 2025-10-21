@@ -218,6 +218,12 @@ Provide 3-5 high-value suggestions that would have the most impact.
         
         # Get AI suggestions with streaming (with automatic fallback)
         llm = get_provider_with_fallback(provider, verbose=verbose)
+        
+        # Detect if fallback occurred and notify user
+        actual_provider = getattr(llm, "provider_name", provider)
+        if verbose and actual_provider and actual_provider != provider:
+            console.print(f"[dim yellow]⚠️  Fallback: Using {actual_provider} instead of {provider}[/dim yellow]")
+        
         chunks = llm.stream_complete(
             prompt=prompt,
             system_prompt=system_prompt,
@@ -228,7 +234,7 @@ Provide 3-5 high-value suggestions that would have the most impact.
         response = streamer.stream_markdown(chunks, title="💡 Refactoring Suggestions")
         
         if verbose:
-            console.print(f"\n[dim]Provider: {provider}[/dim]")
+            console.print(f"\n[dim]Provider: {actual_provider}[/dim]")
             console.print(f"[dim]Model: {llm.model}[/dim]")
         
         # Export if requested
@@ -365,6 +371,12 @@ Format as clear markdown sections. Be specific and constructive.
         
         # Get AI analysis with streaming (with automatic fallback)
         llm = get_provider_with_fallback(provider, verbose=verbose)
+        
+        # Detect if fallback occurred and notify user
+        actual_provider = getattr(llm, "provider_name", provider)
+        if verbose and actual_provider and actual_provider != provider:
+            console.print(f"[dim yellow]⚠️  Fallback: Using {actual_provider} instead of {provider}[/dim yellow]")
+        
         chunks = llm.stream_complete(
             prompt=prompt,
             system_prompt=system_prompt,
@@ -375,7 +387,7 @@ Format as clear markdown sections. Be specific and constructive.
         response = streamer.stream_markdown(chunks, title="📊 Code Quality Analysis")
         
         if verbose:
-            console.print(f"\n[dim]Provider: {provider}[/dim]")
+            console.print(f"\n[dim]Provider: {actual_provider}[/dim]")
             console.print(f"[dim]Model: {llm.model}[/dim]")
         
         # Export if requested

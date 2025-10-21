@@ -47,6 +47,7 @@ class OpenRouterProvider(BaseLLMProvider):
             api_key: OpenRouter API key (or set OPENROUTER_API_KEY env var)
         """
         super().__init__(model, api_key)
+        self.provider_name = "openrouter"
         self.api_key = api_key or os.getenv("OPENROUTER_API_KEY")
         
         if not self.api_key:

@@ -25,6 +25,7 @@ class MockProvider(BaseLLMProvider):
     def __init__(self, model: str = "mock-v1", api_key: Optional[str] = None):
         """Initialize mock provider"""
         super().__init__(model, api_key)
+        self.provider_name = "mock"
         self.model = model
     
     def complete(

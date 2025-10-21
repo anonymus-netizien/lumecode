@@ -192,6 +192,11 @@ def changes(
         # Get LLM provider (with automatic fallback)
         llm = get_provider_with_fallback(provider, verbose=verbose)
         
+        # Detect if fallback occurred and notify user
+        actual_provider = getattr(llm, "provider_name", provider)
+        if verbose and actual_provider and actual_provider != provider:
+            console.print(f"[dim yellow]⚠️  Fallback: Using {actual_provider} instead of {provider}[/dim yellow]")
+        
         # Stream the review
         console.print()
         streamer = StreamingDisplay(console)
@@ -204,7 +209,7 @@ def changes(
         review = streamer.stream_markdown(chunks, title="✨ Code Review")
         
         if verbose:
-            console.print(f"\n[dim]Provider: {provider}[/dim]")
+            console.print(f"\n[dim]Provider: {actual_provider}[/dim]")
             console.print(f"[dim]Model: {llm.model}[/dim]")
         
         # Export if requested
@@ -305,6 +310,11 @@ def file(
         # Get LLM provider (with automatic fallback)
         llm = get_provider_with_fallback(provider, verbose=verbose)
         
+        # Detect if fallback occurred and notify user
+        actual_provider = getattr(llm, "provider_name", provider)
+        if verbose and actual_provider and actual_provider != provider:
+            console.print(f"[dim yellow]⚠️  Fallback: Using {actual_provider} instead of {provider}[/dim yellow]")
+        
         # Stream the review
         console.print()
         streamer = StreamingDisplay(console)
@@ -317,7 +327,7 @@ def file(
         review = streamer.stream_markdown(chunks, title="✨ Code Review")
         
         if verbose:
-            console.print(f"\n[dim]Provider: {provider}[/dim]")
+            console.print(f"\n[dim]Provider: {actual_provider}[/dim]")
             console.print(f"[dim]Model: {llm.model}[/dim]")
         
         # Export if requested
@@ -441,6 +451,11 @@ def security(
         # Get LLM provider (with automatic fallback)
         llm = get_provider_with_fallback(provider, verbose=verbose)
         
+        # Detect if fallback occurred and notify user
+        actual_provider = getattr(llm, "provider_name", provider)
+        if verbose and actual_provider and actual_provider != provider:
+            console.print(f"[dim yellow]⚠️  Fallback: Using {actual_provider} instead of {provider}[/dim yellow]")
+        
         # Stream the security review
         console.print()
         streamer = StreamingDisplay(console)
@@ -453,7 +468,7 @@ def security(
         review = streamer.stream_markdown(chunks, title="🔒 Security Review")
         
         if verbose:
-            console.print(f"\n[dim]Provider: {provider}[/dim]")
+            console.print(f"\n[dim]Provider: {actual_provider}[/dim]")
             console.print(f"[dim]Model: {llm.model}[/dim]")
         
         # Export if requested
