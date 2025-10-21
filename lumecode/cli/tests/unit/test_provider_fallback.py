@@ -91,6 +91,7 @@ class TestProviderFallback:
             provider = get_provider_with_fallback('groq', model='llama-70b', verbose=False)
             # Should fall back to mock, but model parameter should be handled
             assert isinstance(provider, MockProvider)
+            assert provider.model == 'llama-70b'  # Model should be preserved
 
 
 class TestListAvailableProviders:
