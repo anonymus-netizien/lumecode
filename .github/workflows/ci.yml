@@ -29,15 +29,15 @@ jobs:
     
     - name: Lint with black
       run: |
-        black --check lumecode/
+        black --check lumecode/cli/
     
     - name: Check imports with isort
       run: |
-        isort --check lumecode/
+        isort --check lumecode/cli/
     
     - name: Run tests
       run: |
-        pytest lumecode/ -v -k "not integration" --cov=lumecode --cov-report=xml --cov-report=term
+        pytest lumecode/cli/tests/unit/ -v -k "not integration" --cov=lumecode.cli --cov-report=xml --cov-report=term
     
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
@@ -63,5 +63,5 @@ jobs:
     
     - name: Lint with flake8
       run: |
-        flake8 lumecode/ --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 lumecode/ --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+        flake8 lumecode/cli/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 lumecode/cli/ --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
