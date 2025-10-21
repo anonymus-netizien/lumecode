@@ -146,7 +146,9 @@ test_output/
 
 # Development files
 *.sh
-test_*.py
+# Ignore test_*.py files in root and lumecode/ dir, but not in test directories
+/test_*.py
+/lumecode/test_*.py
 *.code-workspace
 DEPLOYMENT_*.md
 REVIEW_*.md
