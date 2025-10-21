@@ -206,9 +206,6 @@ class TestChatIntegration:
 
     def test_session_persistence(self):
         """Test session can be saved and loaded."""
-        import shutil
-        import tempfile
-
         from lumecode.cli.core.session import SessionManager
 
         # Create temp dir for sessions
