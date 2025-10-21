@@ -13,7 +13,7 @@ from typing import Optional, List
 
 from lumecode.cli.core.context import GitContext
 from lumecode.cli.core.prompts import PromptTemplates
-from lumecode.cli.core.llm import get_provider
+from lumecode.cli.core.llm import get_provider_with_fallback
 
 
 console = Console()
@@ -109,8 +109,8 @@ def generate(staged: bool, auto_commit: bool, provider: str, conventional: bool,
             console.print(f"\nPrompt length: {len(prompt)} chars")
             console.print(f"Using provider: {provider}\n")
         
-        # Get LLM provider
-        llm = get_provider(provider)
+        # Get LLM provider (with automatic fallback)
+        llm = get_provider_with_fallback(provider, verbose=verbose)
         
         # Generate commit message
         console.print(Panel(
@@ -303,8 +303,8 @@ def improve(message: str, provider: str, conventional: bool, verbose: bool):
         
         system_prompt = PromptTemplates.system_prompt("commit")
         
-        # Get LLM provider
-        llm = get_provider(provider)
+        # Get LLM provider (with automatic fallback)
+        llm = get_provider_with_fallback(provider, verbose=verbose)
         
         # Generate improved message
         console.print(Panel(

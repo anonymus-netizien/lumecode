@@ -12,7 +12,7 @@ from typing import Optional
 
 from lumecode.cli.core.context import FileContext, CodeParser
 from lumecode.cli.core.prompts import PromptTemplates
-from lumecode.cli.core.llm import get_provider
+from lumecode.cli.core.llm import get_provider_with_fallback
 from lumecode.cli.core.refactor import RefactorParser
 from lumecode.cli.core.ui import StreamingDisplay
 
@@ -216,8 +216,8 @@ Provide 3-5 high-value suggestions that would have the most impact.
         ))
         console.print()
         
-        # Get AI suggestions with streaming
-        llm = get_provider(provider)
+        # Get AI suggestions with streaming (with automatic fallback)
+        llm = get_provider_with_fallback(provider, verbose=verbose)
         chunks = llm.stream_complete(
             prompt=prompt,
             system_prompt=system_prompt,
@@ -363,8 +363,8 @@ Format as clear markdown sections. Be specific and constructive.
         ))
         console.print()
         
-        # Get AI analysis with streaming
-        llm = get_provider(provider)
+        # Get AI analysis with streaming (with automatic fallback)
+        llm = get_provider_with_fallback(provider, verbose=verbose)
         chunks = llm.stream_complete(
             prompt=prompt,
             system_prompt=system_prompt,
