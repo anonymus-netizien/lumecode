@@ -6,6 +6,7 @@ Cache LLM responses to save API calls and improve performance.
 import hashlib
 import json
 import os
+import threading
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional, Dict, Any
@@ -252,13 +253,19 @@ class ResponseCache:
 
 # Global cache instance
 _cache_instance = None
+_cache_lock = threading.Lock()
 
 
 def get_cache(cache_dir: Optional[str] = None, ttl_hours: int = 24) -> ResponseCache:
-    """Get global cache instance"""
+    """Get global cache instance with thread-safe double-checked locking"""
     global _cache_instance
 
+    # First check without lock (fast path)
     if _cache_instance is None:
-        _cache_instance = ResponseCache(cache_dir, ttl_hours)
+        # Acquire lock for thread-safe initialization
+        with _cache_lock:
+            # Double-check inside lock
+            if _cache_instance is None:
+                _cache_instance = ResponseCache(cache_dir, ttl_hours)
 
     return _cache_instance

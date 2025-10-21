@@ -131,7 +131,6 @@ class GroqProvider(BaseLLMProvider):
                 )
 
             return completion
-            return data["choices"][0]["message"]["content"]
 
     def stream_complete(
         self,

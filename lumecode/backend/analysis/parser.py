@@ -3,6 +3,7 @@ import logging
 import os
 import tempfile
 import subprocess
+import time
 from pathlib import Path
 
 # Import tree-sitter
