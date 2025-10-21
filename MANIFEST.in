@@ -1,0 +1,30 @@
+include README.md
+include LICENSE
+include pyproject.toml
+include .env.example
+
+# Only include lumecode package (not venvs or tests)
+recursive-include lumecode/cli *.py
+recursive-include lumecode/backend/config *.py
+recursive-include lumecode/backend/docs *.py
+recursive-include lumecode/backend/agents *.py
+include lumecode/__init__.py
+include lumecode/__version__.py
+
+# Exclude everything we don't want
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * *.so
+recursive-exclude lumecode/cli/tests *
+recursive-exclude lumecode/backend/tests *
+recursive-exclude lumecode/backend/venv *
+recursive-exclude lumecode/cli/venv *
+recursive-exclude tests *
+recursive-exclude docs *
+recursive-exclude .archive *
+recursive-exclude htmlcov *
+recursive-exclude automation *
+exclude .gitignore
+exclude pytest.ini
+exclude *.sh
+exclude README_OLD.md
