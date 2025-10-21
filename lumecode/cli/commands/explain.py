@@ -13,7 +13,7 @@ from typing import Optional
 
 from lumecode.cli.core.context import FileContext, CodeParser
 from lumecode.cli.core.prompts import PromptTemplates
-from lumecode.cli.core.llm import get_provider
+from lumecode.cli.core.llm import get_provider_with_fallback
 from lumecode.cli.core.ui import StreamingDisplay
 
 
@@ -163,8 +163,8 @@ def code(
             console.print(f"\nPrompt length: {len(prompt)} chars")
             console.print(f"Using provider: {provider}\n")
         
-        # Get LLM provider
-        llm = get_provider(provider)
+        # Get LLM provider (with automatic fallback)
+        llm = get_provider_with_fallback(provider, verbose=verbose)
         
         # Get explanation with streaming
         console.print(Panel(
@@ -242,8 +242,8 @@ def concept(question: str, provider: str, verbose: bool):
         
         system_prompt = PromptTemplates.system_prompt("explain")
         
-        # Get LLM provider
-        llm = get_provider(provider)
+        # Get LLM provider (with automatic fallback)
+        llm = get_provider_with_fallback(provider, verbose=verbose)
         
         # Display question
         console.print(Panel(
@@ -343,8 +343,8 @@ def diff(staged: bool, provider: str, verbose: bool):
             console.print(f"Prompt length: {len(prompt)} chars")
             console.print(f"Using provider: {provider}\n")
         
-        # Get LLM provider
-        llm = get_provider(provider)
+        # Get LLM provider (with automatic fallback)
+        llm = get_provider_with_fallback(provider, verbose=verbose)
         
         # Stream the explanation
         console.print(Panel(

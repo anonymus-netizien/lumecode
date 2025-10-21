@@ -40,6 +40,44 @@ from lumecode.cli.commands.file import file  # NEW: File operations
 from lumecode.cli.commands.provider import provider_group  # NEW: Provider management
 
 
+def _check_api_keys():
+    """Check for API keys and display setup guidance if missing."""
+    groq_key = os.getenv("GROQ_API_KEY")
+    openrouter_key = os.getenv("OPENROUTER_API_KEY")
+    
+    # If at least one key is configured, we're good
+    if groq_key or openrouter_key:
+        return
+    
+    # No API keys configured - show friendly setup message
+    click.echo()
+    click.secho("⚠️  No API keys configured!", fg="yellow", bold=True)
+    click.echo()
+    click.echo("Lumecode requires at least one API key to function.")
+    click.echo("You can use FREE tiers from:")
+    click.echo()
+    click.secho("  • Groq (recommended)", fg="green", bold=True)
+    click.echo("    - Fast, high-quality models")
+    click.echo("    - Sign up: https://console.groq.com")
+    click.echo("    - Set: export GROQ_API_KEY='your-key-here'")
+    click.echo()
+    click.secho("  • OpenRouter", fg="cyan", bold=True)
+    click.echo("    - Access to multiple model providers")
+    click.echo("    - Sign up: https://openrouter.ai")
+    click.echo("    - Set: export OPENROUTER_API_KEY='your-key-here'")
+    click.echo()
+    click.echo("To persist your API key, add it to your shell profile:")
+    click.echo("  echo 'export GROQ_API_KEY=\"your-key-here\"' >> ~/.zshrc")
+    click.echo("  source ~/.zshrc")
+    click.echo()
+    click.echo("Or create a .env file in your project directory:")
+    click.echo("  GROQ_API_KEY=your-key-here")
+    click.echo()
+    click.secho("💡 Tip:", fg="blue", bold=True)
+    click.echo("  Run 'lumecode config' to see all configuration options")
+    click.echo()
+
+
 @click.group()
 @click.version_option(version=__version__)
 @click.option(
@@ -68,6 +106,9 @@ def cli(debug, config):
         config_manager = ConfigManager()
         config_manager.load_config(config)
         logger.debug(f"Loaded config from {config}")
+    
+    # Check for API keys and show setup guidance
+    _check_api_keys()
 
 
 # Register command groups

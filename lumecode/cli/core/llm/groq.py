@@ -42,7 +42,13 @@ class GroqProvider(BaseLLMProvider):
         self.api_key = api_key or os.getenv("GROQ_API_KEY")
         
         if not self.api_key:
-            raise ValueError("Groq API key required. Set GROQ_API_KEY env var or pass api_key parameter")
+            raise ValueError(
+                "Groq API key required!\n"
+                "  1. Sign up for FREE at: https://console.groq.com\n"
+                "  2. Get your API key from the dashboard\n"
+                "  3. Set it: export GROQ_API_KEY='your-key-here'\n"
+                "  Or add to .env file: GROQ_API_KEY=your-key-here"
+            )
         
         # Map shorthand to full model name
         self.model = self.MODELS.get(model, model)
