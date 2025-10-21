@@ -5,10 +5,11 @@ Order: Groq → OpenRouter → Mock (never fails!)
 """
 
 import os
-from typing import Optional, List
+from typing import List, Optional
+
 from .base import BaseLLMProvider, ProviderType
-from .mock import MockProvider
 from .groq import GroqProvider
+from .mock import MockProvider
 from .openrouter import OpenRouterProvider
 
 

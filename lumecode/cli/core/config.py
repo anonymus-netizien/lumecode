@@ -5,9 +5,9 @@ Store and manage user preferences and settings
 
 import json
 import os
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Dict, Optional
-from dataclasses import dataclass, asdict
 
 
 @dataclass

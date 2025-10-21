@@ -3,14 +3,15 @@ Unit tests for Session Management
 Tests session creation, save/load, and message handling
 """
 
-import pytest
+import json
+import shutil
+import tempfile
 from datetime import datetime
 from pathlib import Path
-import json
-import tempfile
-import shutil
 
-from lumecode.cli.core.session import Session, SessionManager, Message
+import pytest
+
+from lumecode.cli.core.session import Message, Session, SessionManager
 
 
 class TestMessage:

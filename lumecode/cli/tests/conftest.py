@@ -8,16 +8,17 @@ Shared pytest fixtures for Lumecode CLI tests.
 Advanced fixtures for comprehensive testing.
 """
 
-import pytest
-import tempfile
-import subprocess
-import os
 import json
-from pathlib import Path
-from click.testing import CliRunner
-from unittest.mock import Mock, MagicMock, patch
-from typing import Generator, Dict, Any
+import os
+import subprocess
 import sys
+import tempfile
+from pathlib import Path
+from typing import Any, Dict, Generator
+from unittest.mock import MagicMock, Mock, patch
+
+import pytest
+from click.testing import CliRunner
 
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent.parent

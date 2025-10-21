@@ -3,10 +3,11 @@ Advanced Unit Tests for CLI Commands
 Uses parametrization, mocking, and property-based testing.
 """
 
-import pytest
 import sys
 from pathlib import Path
-from unittest.mock import Mock, patch, MagicMock, call
+from unittest.mock import MagicMock, Mock, call, patch
+
+import pytest
 from click.testing import CliRunner
 
 # Add project root to path
@@ -14,7 +15,6 @@ project_root = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
 from lumecode.cli.main import cli
-
 
 # ============================================================================
 # ASK COMMAND TESTS

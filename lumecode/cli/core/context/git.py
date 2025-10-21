@@ -6,9 +6,9 @@ Extracts context from Git repository for AI analysis.
 import os
 import subprocess
 from dataclasses import dataclass
-from typing import List, Optional, Dict
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Optional
 
 
 @dataclass

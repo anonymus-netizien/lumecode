@@ -5,8 +5,8 @@ Defines the abstract interface that all LLM providers must implement.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Optional, Iterator
 from enum import Enum
+from typing import Iterator, Optional
 
 
 class ProviderType(Enum):

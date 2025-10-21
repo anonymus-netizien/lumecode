@@ -4,10 +4,12 @@ Tests the friendly setup flow in main.py
 """
 
 import os
+from unittest.mock import MagicMock, patch
+
 import pytest
-from unittest.mock import patch, MagicMock
 from click.testing import CliRunner
-from lumecode.cli.main import cli, _check_api_keys
+
+from lumecode.cli.main import _check_api_keys, cli
 
 
 class TestAPIKeyChecking:

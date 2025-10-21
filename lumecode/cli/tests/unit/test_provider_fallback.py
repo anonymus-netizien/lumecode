@@ -4,15 +4,17 @@ Tests the automatic fallback from Groq → OpenRouter → Mock
 """
 
 import os
+from unittest.mock import MagicMock, patch
+
 import pytest
-from unittest.mock import patch, MagicMock
+
 from lumecode.cli.core.llm import (
+    GroqProvider,
+    MockProvider,
+    OpenRouterProvider,
     get_provider,
     get_provider_with_fallback,
     list_available_providers,
-    GroqProvider,
-    OpenRouterProvider,
-    MockProvider,
 )
 
 

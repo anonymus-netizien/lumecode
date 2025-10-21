@@ -3,12 +3,13 @@ Unit tests for File Operations
 Tests file read, search, tree, and basic operations
 """
 
-import pytest
 import os
-from click.testing import CliRunner
-from pathlib import Path
-import tempfile
 import shutil
+import tempfile
+from pathlib import Path
+
+import pytest
+from click.testing import CliRunner
 
 from lumecode.cli.commands.file import file
 

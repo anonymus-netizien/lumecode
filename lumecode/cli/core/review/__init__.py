@@ -3,7 +3,7 @@ Review utilities.
 Code review parsing and formatting.
 """
 
-from .parser import ReviewParser, ReviewIssue, Severity, Category
+from .parser import Category, ReviewIssue, ReviewParser, Severity
 
 __all__ = [
     "ReviewParser",

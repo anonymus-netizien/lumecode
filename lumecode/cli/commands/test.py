@@ -3,15 +3,16 @@ Test Generation Command
 Generate and improve unit tests using AI
 """
 
-import click
 from pathlib import Path
+
+import click
 from rich.console import Console
+from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.syntax import Syntax
-from rich.markdown import Markdown
 
-from ..core.context import FileContext, CodeParser
-from ..core.llm import get_provider_with_fallback, get_provider  # get_provider for tests patching
+from ..core.context import CodeParser, FileContext
+from ..core.llm import get_provider, get_provider_with_fallback  # get_provider for tests patching
 from ..core.prompts import PromptTemplates
 from ..core.ui import StreamingDisplay
 

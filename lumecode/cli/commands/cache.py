@@ -5,8 +5,8 @@ Manage LLM response cache
 
 import click
 from rich.console import Console
-from rich.table import Table
 from rich.panel import Panel
+from rich.table import Table
 
 from ..core.cache import get_cache
 

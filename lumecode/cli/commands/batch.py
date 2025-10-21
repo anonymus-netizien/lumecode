@@ -3,15 +3,16 @@ Batch Operations Command
 Process multiple files at once
 """
 
-import click
 from pathlib import Path
-from rich.console import Console
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
-from rich.table import Table
-from rich.panel import Panel
 
-from ..core.context import FileContext, CodeParser
-from ..core.llm import get_provider_with_fallback, get_provider  # get_provider for tests patching
+import click
+from rich.console import Console
+from rich.panel import Panel
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
+from rich.table import Table
+
+from ..core.context import CodeParser, FileContext
+from ..core.llm import get_provider, get_provider_with_fallback  # get_provider for tests patching
 from ..core.prompts import PromptTemplates
 
 console = Console()

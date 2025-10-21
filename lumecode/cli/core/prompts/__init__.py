@@ -3,8 +3,8 @@ Prompt management utilities.
 Templates and context builders for AI interactions.
 """
 
-from .templates import PromptTemplates
 from .context import PromptContext
+from .templates import PromptTemplates
 
 __all__ = [
     "PromptTemplates",

@@ -5,8 +5,8 @@ and truncating text to fit within token budgets.
 """
 
 from typing import Optional
-import tiktoken
 
+import tiktoken
 
 # Model token limits (context window sizes)
 MODEL_TOKEN_LIMITS = {

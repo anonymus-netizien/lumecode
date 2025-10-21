@@ -4,7 +4,8 @@ Combines file and git context into prompts.
 """
 
 from typing import List, Optional
-from ..context import GitContext, FileContext, FileInfo, GitStatus
+
+from ..context import FileContext, FileInfo, GitContext, GitStatus
 
 
 class PromptContext:

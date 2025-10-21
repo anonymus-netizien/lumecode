@@ -3,19 +3,19 @@ Refactor Command
 AI-powered code refactoring suggestions.
 """
 
-import click
 from pathlib import Path
-from rich.console import Console
-from rich.panel import Panel
-from rich.markdown import Markdown
 from typing import Optional
 
-from lumecode.cli.core.context import FileContext, CodeParser
-from lumecode.cli.core.prompts import PromptTemplates
+import click
+from rich.console import Console
+from rich.markdown import Markdown
+from rich.panel import Panel
+
+from lumecode.cli.core.context import CodeParser, FileContext
 from lumecode.cli.core.llm import get_provider_with_fallback
+from lumecode.cli.core.prompts import PromptTemplates
 from lumecode.cli.core.refactor import RefactorParser
 from lumecode.cli.core.ui import StreamingDisplay
-
 
 console = Console()
 

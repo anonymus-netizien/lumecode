@@ -3,22 +3,21 @@ Ask Command
 AI-powered Q&A about your codebase.
 """
 
+from typing import List, Optional
+
 import click
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
-from typing import List, Optional
 
-from lumecode.cli.core.llm import get_provider_with_fallback
-from lumecode.cli.core.llm import list_available_providers
+from lumecode.cli.core.context import GitContext
 
 # Backward-compatibility shim for tests that patch get_provider at module level
 # The tests expect lumecode.cli.commands.ask.get_provider to exist
 from lumecode.cli.core.llm import get_provider  # noqa: F401
-from lumecode.cli.core.prompts import PromptTemplates, PromptContext
-from lumecode.cli.core.context import GitContext
+from lumecode.cli.core.llm import get_provider_with_fallback, list_available_providers
+from lumecode.cli.core.prompts import PromptContext, PromptTemplates
 from lumecode.cli.core.ui import StreamingDisplay
-
 
 console = Console()
 

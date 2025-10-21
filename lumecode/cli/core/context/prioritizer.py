@@ -4,10 +4,10 @@ This module provides utilities for prioritizing files based on various factors
 like modification time, file size, and file type.
 """
 
+import time
+from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
-from datetime import datetime
-import time
 
 
 def prioritize_files(

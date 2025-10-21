@@ -6,12 +6,13 @@ NOTE: These tests invoke real commands with real providers and should be
 treated as integration tests. They are skipped in unit test runs.
 """
 
-import pytest
 import sys
-import time
 import tempfile
+import time
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
+import pytest
 from click.testing import CliRunner
 
 # Add project root to path
@@ -19,7 +20,6 @@ project_root = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
 from lumecode.cli.main import cli
-
 
 # Mark all performance tests as integration tests
 pytestmark = pytest.mark.integration

@@ -3,10 +3,11 @@ Comprehensive Integration Tests for Lumecode CLI
 Tests real command execution with proper mocking.
 """
 
-import pytest
 import sys
 from pathlib import Path
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import MagicMock, Mock, patch
+
+import pytest
 from click.testing import CliRunner
 
 # Add project root to path
@@ -14,7 +15,6 @@ project_root = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
 from lumecode.cli.main import cli
-
 
 # ============================================================================
 # TEST ASK COMMAND
@@ -493,8 +493,8 @@ class TestPerformanceSmoke:
 
     def test_help_commands_are_fast(self, runner):
         """Test help commands respond quickly."""
-        import time
         import os
+        import time
 
         # Configurable timeout with sensible defaults
         help_timeout = float(os.environ.get("LUMECODE_HELP_TIMEOUT", "5.0"))
@@ -517,8 +517,8 @@ class TestPerformanceSmoke:
 
     def test_mock_provider_is_fast(self, runner):
         """Test mock provider responds quickly."""
-        import time
         import os
+        import time
 
         # Configurable timeout with sensible defaults
         mock_timeout = float(os.environ.get("LUMECODE_MOCK_TIMEOUT", "10.0"))

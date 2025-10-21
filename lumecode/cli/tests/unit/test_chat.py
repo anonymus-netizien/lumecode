@@ -3,14 +3,15 @@ Unit tests for Chat Command
 Tests interactive REPL, session management, and chat functionality
 """
 
+import shutil
+import tempfile
+from pathlib import Path
+from unittest.mock import MagicMock, Mock, patch
+
 import pytest
 from click.testing import CliRunner
-from unittest.mock import Mock, patch, MagicMock
-from pathlib import Path
-import tempfile
-import shutil
 
-from lumecode.cli.commands.chat import chat, ChatSession, ChatCompleter
+from lumecode.cli.commands.chat import ChatCompleter, ChatSession, chat
 
 
 class TestChatSession:
@@ -205,8 +206,9 @@ class TestChatIntegration:
 
     def test_session_persistence(self):
         """Test session can be saved and loaded."""
-        import tempfile
         import shutil
+        import tempfile
+
         from lumecode.cli.core.session import SessionManager
 
         # Create temp dir for sessions

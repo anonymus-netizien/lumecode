@@ -4,9 +4,10 @@ Handles real-time rendering of AI responses with Rich UI
 """
 
 from typing import Iterator, Optional
+
+from rich.console import Console
 from rich.live import Live
 from rich.markdown import Markdown
-from rich.console import Console
 from rich.panel import Panel
 
 

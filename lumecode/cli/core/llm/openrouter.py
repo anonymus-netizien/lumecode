@@ -12,9 +12,11 @@ Free models available after setup: deepseek-v3.1, qwen3-coder, kimi-k2, etc.
 """
 
 import os
-import httpx
 from typing import Iterator, Optional
-from .base import BaseLLMProvider, ModelInfo, RateLimitInfo, ProviderType
+
+import httpx
+
+from .base import BaseLLMProvider, ModelInfo, ProviderType, RateLimitInfo
 
 
 class OpenRouterProvider(BaseLLMProvider):

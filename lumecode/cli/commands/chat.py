@@ -3,23 +3,24 @@ Interactive REPL Mode for Lumecode
 Provides conversational AI sessions with context preservation
 """
 
+import json
+from datetime import datetime
+from pathlib import Path
+from typing import List, Optional
+
 import click
 from prompt_toolkit import PromptSession
-from prompt_toolkit.history import FileHistory
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
-from prompt_toolkit.completion import WordCompleter, Completer, Completion
+from prompt_toolkit.completion import Completer, Completion, WordCompleter
 from prompt_toolkit.formatted_text import HTML
+from prompt_toolkit.history import FileHistory
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
-from pathlib import Path
-from datetime import datetime
-from typing import Optional, List
-import json
 
+from lumecode.cli.core.context import ContextManager
 from lumecode.cli.core.llm import get_provider_with_fallback
 from lumecode.cli.core.session import Session, SessionManager
-from lumecode.cli.core.context import ContextManager
 
 
 class ChatCompleter(Completer):

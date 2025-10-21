@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
+import logging
 import os
 import sys
-import click
-import logging
 from pathlib import Path
+
+import click
 
 # Get version
 try:
@@ -23,20 +24,21 @@ cli_dir = Path(__file__).parent
 project_root = cli_dir.parent.parent
 sys.path.insert(0, str(project_root))
 
+from lumecode.cli.commands.ask import ask
+from lumecode.cli.commands.batch import batch_group
+from lumecode.cli.commands.cache import cache_group
+from lumecode.cli.commands.chat import chat  # NEW: Interactive REPL
+from lumecode.cli.commands.commit import commit_group
+from lumecode.cli.commands.config import config_group
+
 # Import command groups
 from lumecode.cli.commands.docs import docs_group
-from lumecode.cli.commands.ask import ask
-from lumecode.cli.commands.commit import commit_group
 from lumecode.cli.commands.explain import explain_group
-from lumecode.cli.commands.review import review_group
-from lumecode.cli.commands.refactor import refactor_group
-from lumecode.cli.commands.test import test_group
-from lumecode.cli.commands.cache import cache_group
-from lumecode.cli.commands.config import config_group
-from lumecode.cli.commands.batch import batch_group
-from lumecode.cli.commands.chat import chat  # NEW: Interactive REPL
 from lumecode.cli.commands.file import file  # NEW: File operations
 from lumecode.cli.commands.provider import provider_group  # NEW: Provider management
+from lumecode.cli.commands.refactor import refactor_group
+from lumecode.cli.commands.review import review_group
+from lumecode.cli.commands.test import test_group
 
 
 def _check_api_keys():

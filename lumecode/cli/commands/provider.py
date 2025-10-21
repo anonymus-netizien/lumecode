@@ -3,16 +3,16 @@ Provider Management Commands
 Configure, list, and test AI providers
 """
 
-import click
 import os
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
 from typing import Optional
 
-from lumecode.cli.core.llm import get_provider_with_fallback, ProviderType
-from lumecode.cli.core.config import get_config, set_config
+import click
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
 
+from lumecode.cli.core.config import get_config, set_config
+from lumecode.cli.core.llm import ProviderType, get_provider_with_fallback
 
 console = Console()
 

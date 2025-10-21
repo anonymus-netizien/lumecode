@@ -3,20 +3,22 @@ Property-Based Testing using Hypothesis
 Tests invariants and edge cases automatically.
 """
 
-import pytest
 import sys
 from pathlib import Path
-from hypothesis import given, strategies as st, settings, example
-from hypothesis import HealthCheck
+
+import pytest
+from hypothesis import HealthCheck, example, given, settings
+from hypothesis import strategies as st
 
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from click.testing import CliRunner
-from lumecode.cli.main import cli
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
+from click.testing import CliRunner
+
+from lumecode.cli.main import cli
 
 # ============================================================================
 # STRATEGIES

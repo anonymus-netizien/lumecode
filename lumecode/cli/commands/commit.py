@@ -3,18 +3,18 @@ Commit Command
 AI-powered commit message generation.
 """
 
+import subprocess
+from typing import List, Optional
+
 import click
 from rich.console import Console
-from rich.panel import Panel
 from rich.markdown import Markdown
+from rich.panel import Panel
 from rich.prompt import Confirm, Prompt
-import subprocess
-from typing import Optional, List
 
 from lumecode.cli.core.context import GitContext
-from lumecode.cli.core.prompts import PromptTemplates
 from lumecode.cli.core.llm import get_provider_with_fallback
-
+from lumecode.cli.core.prompts import PromptTemplates
 
 console = Console()
 

@@ -3,21 +3,21 @@ Review Command
 AI-powered code reviews.
 """
 
+from pathlib import Path
+from typing import List, Optional, Tuple
+
 import click
 from rich.console import Console
-from rich.panel import Panel
 from rich.markdown import Markdown
+from rich.panel import Panel
 from rich.syntax import Syntax
 from rich.table import Table
-from pathlib import Path
-from typing import Optional, List, Tuple
 
-from lumecode.cli.core.context import GitContext, FileContext
-from lumecode.cli.core.prompts import PromptTemplates
+from lumecode.cli.core.context import FileContext, GitContext
 from lumecode.cli.core.llm import get_provider_with_fallback
+from lumecode.cli.core.prompts import PromptTemplates
 from lumecode.cli.core.review import ReviewParser, Severity
 from lumecode.cli.core.ui import StreamingDisplay
-
 
 console = Console()
 

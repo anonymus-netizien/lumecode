@@ -5,8 +5,8 @@ Extract code elements for analysis.
 
 import ast
 import re
-from typing import Optional, Dict, List, Tuple
 from dataclasses import dataclass
+from typing import Dict, List, Optional, Tuple
 
 
 @dataclass

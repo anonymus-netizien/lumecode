@@ -5,8 +5,8 @@ Reads and analyzes files for AI context.
 
 import os
 from dataclasses import dataclass
-from typing import List, Optional, Dict
 from pathlib import Path
+from typing import Dict, List, Optional
 
 
 @dataclass

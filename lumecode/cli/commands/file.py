@@ -3,18 +3,18 @@ File operations with AI assistance
 Read, write, edit, and search files using AI
 """
 
-import click
-from pathlib import Path
-from rich.console import Console
-from rich.syntax import Syntax
-from rich.panel import Panel
-from rich.table import Table
-from typing import Optional, List
 import re
+from pathlib import Path
+from typing import List, Optional
+
+import click
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.table import Table
 
 from lumecode.cli.core.llm import get_provider_with_fallback
 from lumecode.cli.core.ui import StreamingDisplay
-
 
 console = Console()
 

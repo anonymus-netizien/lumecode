@@ -5,14 +5,15 @@ This test file focuses on edge cases, error conditions, and less-traveled code p
 to increase coverage from 40% to 60%.
 """
 
-import pytest
 from pathlib import Path
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import MagicMock, Mock, patch
+
+import pytest
 from click.testing import CliRunner
 
 from lumecode.cli.commands.chat import ChatSession, chat
-from lumecode.cli.core.session import SessionManager, Session
 from lumecode.cli.core.llm.mock import MockProvider
+from lumecode.cli.core.session import Session, SessionManager
 
 
 class TestChatSessionAdvanced:

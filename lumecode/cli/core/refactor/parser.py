@@ -3,10 +3,10 @@ Refactoring Parser
 Parse and structure refactoring suggestions from LLM responses.
 """
 
+import re
 from dataclasses import dataclass
 from enum import Enum
 from typing import List, Optional
-import re
 
 
 class RefactorType(Enum):

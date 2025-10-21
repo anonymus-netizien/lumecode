@@ -3,20 +3,20 @@ Advanced Mocking and Fixtures Tests
 Tests using sophisticated mocking techniques.
 """
 
-import pytest
-import sys
 import json
-from pathlib import Path
-from unittest.mock import Mock, MagicMock, patch, call, PropertyMock, mock_open
-from click.testing import CliRunner
 import subprocess
+import sys
+from pathlib import Path
+from unittest.mock import MagicMock, Mock, PropertyMock, call, mock_open, patch
+
+import pytest
+from click.testing import CliRunner
 
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
 from lumecode.cli.main import cli
-
 
 # ============================================================================
 # LLM PROVIDER MOCKING TESTS

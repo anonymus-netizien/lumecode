@@ -3,12 +3,12 @@ Context extraction utilities.
 Provides Git and file context for AI analysis.
 """
 
-from .git import GitContext, GitDiff, GitCommit, GitStatus
-from .files import FileContext, FileInfo
 from .code_parser import CodeParser, CodeSymbol
+from .files import FileContext, FileInfo
+from .git import GitCommit, GitContext, GitDiff, GitStatus
 from .manager import ContextManager
+from .prioritizer import calculate_priority_score, prioritize_files
 from .tokenizer import count_tokens, get_max_tokens, truncate_to_tokens
-from .prioritizer import prioritize_files, calculate_priority_score
 
 __all__ = [
     "GitContext",

@@ -2,9 +2,10 @@
 Integration tests for the Ask command.
 """
 
-import pytest
 import sys
 from pathlib import Path
+
+import pytest
 from click.testing import CliRunner
 
 # Add project root to path

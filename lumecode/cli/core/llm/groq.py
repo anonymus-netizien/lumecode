@@ -5,9 +5,11 @@ Models: llama-70b, mixtral-8x7b, llama-8b
 """
 
 import os
-import httpx
 from typing import Iterator, Optional
-from .base import BaseLLMProvider, ModelInfo, RateLimitInfo, ProviderType
+
+import httpx
+
+from .base import BaseLLMProvider, ModelInfo, ProviderType, RateLimitInfo
 
 
 class GroqProvider(BaseLLMProvider):

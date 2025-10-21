@@ -3,7 +3,7 @@ Prompt Templates
 Pre-built prompts for different AI tasks.
 """
 
-from typing import Optional, List, Dict
+from typing import Dict, List, Optional
 
 
 class PromptTemplates:

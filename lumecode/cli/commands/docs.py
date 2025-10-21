@@ -1,9 +1,10 @@
-import os
-import click
 import logging
+import os
 from pathlib import Path
 
-from lumecode.backend.docs import DocManager, DocFormat
+import click
+
+from lumecode.backend.docs import DocFormat, DocManager
 
 # Provide get_provider for tests that patch this symbol at module level
 try:

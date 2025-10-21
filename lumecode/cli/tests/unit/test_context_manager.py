@@ -1,7 +1,9 @@
 """Tests for ContextManager."""
 
-import pytest
 from pathlib import Path
+
+import pytest
+
 from lumecode.cli.core.context.manager import ContextManager
 
 

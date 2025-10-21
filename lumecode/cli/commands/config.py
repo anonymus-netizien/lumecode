@@ -5,11 +5,11 @@ Manage user preferences and settings
 
 import click
 from rich.console import Console
-from rich.table import Table
 from rich.panel import Panel
 from rich.syntax import Syntax
+from rich.table import Table
 
-from ..core.config import get_config_manager, Config
+from ..core.config import Config, get_config_manager
 
 console = Console()
 

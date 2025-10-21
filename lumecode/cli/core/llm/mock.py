@@ -5,7 +5,8 @@ No API key required - perfect for testing the CLI flow.
 """
 
 from typing import Iterator, Optional
-from .base import BaseLLMProvider, ModelInfo, RateLimitInfo, ProviderType
+
+from .base import BaseLLMProvider, ModelInfo, ProviderType, RateLimitInfo
 
 
 class MockProvider(BaseLLMProvider):
